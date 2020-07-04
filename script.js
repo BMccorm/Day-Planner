@@ -10,8 +10,25 @@ var timeArray = [9, 10, 11, 12, 13, 14, 15, 16, 17];
 //1. create var
 //2. add all the styling
 //3. append to html
-var d1 = $("<div>").attr("class", "input-group mb-3");
-d1.attr("class", "input-group mb-3");
+
+for (var i = 0; i < timeArray.length; i++) {
+  var d1 = $("<div>").attr("class", "input-group mb-3");
+  d1.attr("class", "input-group mb-3");
+
+  var d2;
+  var span = $("<span>");
+  if (timeArray[i] == 12) {
+    span.text(timeArray[i] + " PM");
+  } else if (timeArray[i] <= 12) {
+    span.text(timeArray[i] + " AM");
+  }
+  //else if( greater than 12 - 12 and add pm)
+
+  d1.append(span);
+  $(".container").append(d1);
+  var input;
+  var btn;
+}
 
 // <div class="input-group mb-3">
 //   <div class="input-group-prepend">
