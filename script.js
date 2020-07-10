@@ -1,37 +1,59 @@
 //1. add current time via momentjs
 var currentTime = moment().format("H");
-console.log(moment().format("MMMM Do YYYY, h:mm:ss a"));
+console.log(moment().format("MMMM Do YYYY, h:mm a"));
 
-$("#currentDay").text(moment().format("MMMM Do YYYY, h:mm:ss a"));
+$("#currentDay").text(moment().format("MMMM Do YYYY, h:mm a"));
 console.log(currentTime);
 
 var timeArray = [9, 10, 11, 12, 13, 14, 15, 16, 17];
 
-//1. create var
-//2. add all the styling
-//3. append to html
-
 for (var i = 0; i < timeArray.length; i++) {
+  var span = $("<span>").attr("class", "input-group-text");
   var d1 = $("<div>").attr("class", "input-group mb-3");
-  d1.attr("class", "input-group mb-3");
+  var d2 = $("<div>").attr("class", "input-group-prepend");
+  var input = $("<input>").attr({
+    class: "form-control userInput",
+    type: "text",
+  });
+  var btn = $("<button>").attr({
+    class: "btn btn-outline-secondary submit",
+    type: "button",
+  });
 
-  var d2;
-  var span = $("<span>");
+  $(".container").append(d1);
+  d1.append(d2);
+  d2.append(span);
+  d1.append(input);
+  d1.append(btn);
+
   if (timeArray[i] == 12) {
     span.text(timeArray[i] + " PM");
+  } else if (timeArray[i] >= 12) {
+    span.text(timeArray[i] - 12 + " PM");
   } else if (timeArray[i] <= 12) {
     span.text(timeArray[i] + " AM");
   }
-  //else if( greater than 12 - 12 and add pm)
 
-  d1.append(span);
-  $(".container").append(d1);
-  var input;
-  var btn;
+  if (currentTime == timeArray[i]) {
+    span.attr("class", "present");
+  } else if (currentTime - timeArray[i] < 0) {
+    span.attr("class", "future");
+  } else if (currentTime - timeArray[i] > 0) {
+    span.attr("class", "past");
+  }
+  console.log(timeArray[i]);
 }
 
-// <div class="input-group mb-3">
-//   <div class="input-group-prepend">
+//2. creating one input area with btn, then run for to dynamically add the rest
+
+//3. local storage
+//store data into localStorage
+//get the data from localStorage then append to specific input area
+//hour9= "Test1"
+//key="9" value="Test1"
+
+// <div 1 class="input-group mb-3">
+//   <div 2 class="input-group-prepend">
 //     <span class="input-group-text" value="9">
 //       HOUR
 //     </span>
@@ -47,26 +69,3 @@ for (var i = 0; i < timeArray.length; i++) {
 //     Submit
 //   </button>
 // </div>;
-
-//d1,d2, span, input, btn
-//d2.append(span)
-//d1.append(d2);
-//d1.append(input)
-//d1.append(btn)
-
-//2. creating one inputarea with btn, then run for to dynamically add the rest
-//add style to past present and future
-//if past
-//currentTime -timeArray[i] <0
-//if future
-//currentTime -timeArray[i] >0
-//if present
-//currentTime == timeArray[i]
-//add the present attr
-
-//3. local storage
-//store data into localStorage
-//get the data from localStorage then append to specific input area
-//hour9= "Test1"
-
-//key="9" value="Test1"
