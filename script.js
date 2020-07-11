@@ -49,9 +49,14 @@ for (var i = 0; i < timeArray.length; i++) {
     if (element.matches("button")) {
       let value = $(this).prev().val();
       var dataIndex = $(this).prev().attr("data-index");
-      console.log($(this).prev().val());
+      // console.log($(this).prev().val());
       localStorage.setItem(dataIndex, value);
+      console.log(value);
     }
+
+    let tasks = localStorage.getItem(dataIndex);
+    console.log("task", tasks);
+    input.append.tasks;
   });
 }
 
