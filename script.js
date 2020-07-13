@@ -1,9 +1,13 @@
 //1. add current time via momentjs
 var currentTime = moment().format("H");
-console.log(moment().format("MMMM Do YYYY, h:mm a"));
 
-$("#currentDay").text(moment().format("MMMM Do YYYY, h:mm a"));
-console.log(currentTime);
+$("#currentDay").text(moment().format("MMMM Do YYYY, h:mm:ss a"));
+// console.log(currentTime);
+
+setInterval(function () {
+  $("#currentDay").text(moment().format("MMMM Do YYYY, h:mm:ss a"));
+  console.log(currentTime);
+}, 1000);
 
 const timeArray = [9, 10, 11, 12, 13, 14, 15, 16, 17];
 
@@ -15,18 +19,21 @@ for (var i = 0; i < timeArray.length; i++) {
   var input = $("<input>")
     .attr("class", "form-control userInput")
     .attr("id", "input" + i);
-
   var dataIndex = input.attr("data-index", i);
   console.log(dataIndex);
 
-  var btnEl = $("<button>").attr("class", "btn btn-outline-secondary submit");
-  // btn.textContent = "test";
+  var btnEl = $("<button>").attr(
+    "class",
+    "btn btn-outline-secondary submit saveBtn"
+  );
+  var icon = $("<i>").attr("class", "far fa-save");
 
   $(".container").append(d1);
   d1.append(d2);
   d2.append(span);
   d1.append(input);
   d1.append(btnEl);
+  btnEl.append(icon);
 
   if (timeArray[i] == 12) {
     span.text(timeArray[i] + " PM");
@@ -53,16 +60,12 @@ for (var i = 0; i < timeArray.length; i++) {
       localStorage.setItem(dataIndex, value);
       console.log(value);
     }
-
-    let tasks = localStorage.getItem(dataIndex);
-    console.log("task", tasks);
-    input.append.tasks;
   });
-}
 
-//3. local storage
-//store data into localStorage
-//get the data from localStorage then append to specific input area
+  let tasks = localStorage.getItem(i);
+  console.log("task", tasks);
+  input.val(tasks);
+}
 
 // <div 1 class="input-group mb-3">
 //   <div 2 class="input-group-prepend">
