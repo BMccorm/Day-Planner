@@ -51,15 +51,17 @@ for (var i = 0; i < timeArray.length; i++) {
     span.attr("class", "past");
   }
 
-  btnEl.on("click", function (event) {
+  $(".saveBtn").on("click", function (event) {
+    //alert("clicked");
     var element = event.target;
-    if (element.matches("button")) {
-      let value = $(this).prev().val();
-      var dataIndex = $(this).prev().attr("data-index");
-      // console.log($(this).prev().val());
-      localStorage.setItem(dataIndex, value);
-      console.log(value);
-    }
+    console.log($(this));
+    // if ($(this).matches("button")) {
+    let value = $(this).prev().val();
+    var dataIndex = $(this).prev().attr("data-index");
+    // console.log($(this).prev().val());
+    localStorage.setItem(dataIndex, value);
+    console.log(value);
+    // }
   });
 
   let tasks = localStorage.getItem(i);
